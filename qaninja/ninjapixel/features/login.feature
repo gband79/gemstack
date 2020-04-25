@@ -1,3 +1,4 @@
+
 #language:pt
 
 Funcionalidade: Login
@@ -5,34 +6,24 @@ Funcionalidade: Login
     Sendo um Administrador de catálogo
     Posso acessar o sistema com meu e-mail e senha
 
-@doing
-Cenario: Acessar o portal
+    
+    Contexto:
+    
+        Dado que acesso à página principal
+    
+    Cenario: Acessar o portal
+        
+        Quando eu submeto minhas credenciais "gabriel@ninjapixel.com" e "pwd123"
+        Então devo ser autenticado
 
-    Dado que acesso à página principal
-    Quando eu submeto minhas credenciais "gabriel@ninjapixel.com" e "pwd123"
-    Então devo ser autenticado
+    Esquema do Cenario: Tentar logar
 
-@doing
-Cenario: Senha inválida
+        Quando eu submeto minhas credenciais "<email>" e "<senha>"
+        Então devo ver uma mensagem de alerta "<texto>"
 
-    Dado que acesso à página principal
-    Quando eu submeto minhas credenciais "gabriel@ninjapixel.com" e com senha "123" inválida 
-    Então devo ver uma mensagem de alerta "Usuário e/ou senha inválidos"
-
-Cenario: Email não cadastrado no sistema
-
-    Dado que acesso a pagina principal
-    Quando eu submeto minhas credenciais com email não cadastrado
-    Então devo ver uma mensagem de alerta "Usuário e/ou senha inválidos"
-
-Cenario: Não informo o email
-
-    Dado que acesso a pagina principal
-    Quando eu submeto minhas credenciais sem o email
-    Então devo ver uma mensagem de alerta "Opps. Informe o seu email!"
-
-Cenario: Não informo a senha
-
-    Dado que acesso a pagina principal
-    Quando eu submeto minhas credenciais sem a senha
-    Então devo ver uma mensagem de alerta "Opps. Informe a sua senha!"
+        Exemplos:
+            | email                 | senha  | texto                        |
+            | papito@ninjapixel.com | abc123 | Usuário e/ou senha inválidos |
+            | 404@gmail.com         | abc123 | Usuário e/ou senha inválidos |
+            |                       | abc123 | Opps. Informe o seu email!   |
+            | papito@ninjapixel.com |        | Opps. Informe a sua senha!   |
