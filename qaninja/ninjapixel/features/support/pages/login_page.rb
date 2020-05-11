@@ -9,6 +9,7 @@ class LoginPage
     def login(email, password)
         find("input[name=email]").set email
         find("input[name=password]").set password
+        
         click_button "Entrar"
     end
 
